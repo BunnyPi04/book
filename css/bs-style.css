@@ -1,0 +1,358 @@
+body {
+    background: url("../../../bookstore/local/public/images/light-wooden-bg.jpg");
+    background-attachment: fixed;
+    font-family: sofia;
+}
+.container {
+    background: #e7cfb4;
+    margin-top: 40px;
+}
+#banner {
+    padding: 15px;
+}
+#login{
+    float:none;
+    margin:50px auto;}
+h1 {
+    font-family: Sofia;
+    font-weight: bold;
+    margin: 25px;
+}
+
+#custom-search-input{
+    padding: 3px;
+    border: solid 1px #E4E4E4;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
+
+#custom-search-input button{
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input .glyphicon-search{
+    font-size: 23px;
+}
+.input-group .form-control {
+    padding: 5px;
+    height: 30px;
+}
+#left-menu {
+}
+.fa-shopping-cart {
+    font-size: 80px;
+    color: #333;
+}
+.cart {
+    font-size: 16px;
+}
+.cart a {
+    color: #333;
+}
+.cart-item {
+    border: 1px solid #333;
+    padding: 15px 0px;
+    margin: 15px 0px;
+}
+.cart-tb {
+    width: 100%;
+    font-size: 22px;
+}
+.cart-tb input {
+    width: 100px;
+}
+#cart-block {
+    padding: 15px;
+}
+.sub-total {
+    font-size: 20px;
+    font-weight: bold;
+}
+.item-num {
+    color: white;
+    margin-top: -73%;
+    font-size: 16px;
+    padding-left: 15%;
+}
+.sidebar-nav {
+    list-style: none;
+    padding: 0;
+    background: #ffc18c;
+}
+.sidebar-nav li {
+    line-height: 50px;
+}
+.sidebar-nav li a {
+    font-family: Ahkio;
+    font-size: 20px;
+    padding: 0px 20px;
+    display: block;
+    color: #333;
+}
+.sidebar-nav li a:hover {
+    background: #da6d42;
+}
+ul.sidebar-nav > li:first-child{
+    background: #da6d42;
+}
+ul.sidebar-nav > li:first-child a{
+    color: white;
+}
+#myCarousel {
+    padding: 0px 30px;
+}
+#myCarousel img{
+    width: 100%;
+    height: 410px;
+}
+ul li {
+    list-style: none;
+}
+.book-block {
+    width: 100%;
+    padding: 0 15px;
+}
+.book-block-title {
+    background: #da6d42;
+    padding: 0px 15px;
+    font-family: Sofia;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 50px;
+    position: relative;
+}
+.book-block h4 {
+    overflow: hidden;               text-overflow: ellipsis;
+    white-space: nowrap;            line-height: 35px;
+}
+.book-block-title a {
+    color: white;
+}
+.book-item {
+    width: 100%;
+    display: inline-block;
+    padding: 0;
+}
+.book-item li {
+    text-align: center;
+    padding-bottom: 15px;
+}
+.book-item img{
+}
+.book-title {
+    color: #333;
+    font-family: sofia;
+    font-size: 22px;
+}
+.orbtn {
+    float: right;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 4px;
+}
+.price, .unsale-price {
+    font-family: ahkio;
+    font-size: 20px;
+    color: #563232;
+}
+.des {
+    height: 50px;
+    vertical-align: middle;
+}
+.unsale-price:hover {
+    text-decoration: line-through;
+}
+.unsale-price {
+    text-decoration: line-through;
+}
+.book-name {
+    font-size: 35px;
+    line-height: 70px;
+    font-weight: bold;
+    color: #563232;
+    white-space: normal;
+}
+.status-table {
+    width: 100%;
+    font-size: 18px;
+    margin: 20px 0px;
+}
+.description {
+    font-size: 18px;
+    padding: 15px;
+    text-indent: 30px;
+}
+.comments-div {
+    padding: 10px;
+    background: #E8B991;
+    margin-bottom: 15px;
+}
+#cart-number {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    color: #fff;
+}
+.sold-out {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    width: 100%;
+}
+hr {
+    border-top: 10px solid #da6d42;
+}
+img {
+    width: 100%;
+}
+a {
+    color: #333;
+}
+a, a:hover, a:active {
+    text-decoration: none;
+    color: #333;
+}
+.icon-remove-sign::before {
+    font-size: 20px;
+}
+.btn {
+    font-family: ahkio;
+    font-size: 20px;
+}
+.footer {
+    background-color: #da6d42;
+    margin-top: 20px;
+}
+.footer ul {
+    display: inline-block;
+    padding: 0;
+}
+form {
+    font-family: ahkio;
+    font-size: 22px;
+}
+textarea {
+    width: 100%;
+}
+table {
+    width: 100%;
+}
+.edit {
+    width: 100%;
+}
+.edit, .edit th, .edit td {
+    padding: 10px;
+}
+#store-name {
+    padding: 15px;
+}
+#store-name h2 {
+    margin:15px;
+}
+
+.list-tb {
+    font-size: 18px;
+}
+.list-tb, .list-tb th, .list-tb td {
+    padding: 5px !important;
+    border: 1px solid #333;
+}
+.ahkio {
+    font-family: ahkio;
+}
+.calibri {
+    font-family: calibri;
+}
+.book-area {
+    position: relative;
+}
+.tag {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 50px;
+    transform: rotate(-15deg);
+}
+.overlay {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  opacity: 0.7;
+  background-color: #da6d42;
+  overflow: hidden;
+  width: 100%;
+  height:0;
+  transition: .5s ease;
+}
+
+.book-area:hover .overlay {
+  bottom: 0;
+  height: 100%;
+}
+
+.text {
+  white-space: pre-wrap;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+#example {
+    background: transparent;
+    line-height: 22px;
+    font-size: 15px;
+    font-family: calibri;
+}
+.odd, tr.odd td.sorting_1 {
+    background: #e0be98!important;
+}
+.even, tr.even td.sorting_1 {
+    background: transparent!important;
+}
+table.dataTable td {
+    padding: 0px!important;
+}
+.pad-0 {
+    padding: 0;
+}
+.pagination>li>.text-page, .pagination>li>.text-page:hover {
+    color: #da6d42;
+}
+.pagination>.active>span, .pagination>.active>span:hover, .pagination>.active>span:active {
+    background-color: #da6d42;
+    border-color: #da6d42;
+}
+.category-div {
+    overflow-y: scroll; height: 420px;
+}
+@font-face {
+    font-family: Ahkio;
+    src: url('../../../bookstore/fonts/FS Ahkio-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: Sofia;
+    src:url('../../../bookstore/fonts/VNF-Sofia Regular.ttf') format('truetype');
+}
