@@ -15,7 +15,7 @@
     @endif
     <div>
         <form method="post" onsubmit="return validateCouponForm();">
-            <table>
+            <table class="no-border">
                 {{ csrf_field() }}
                 <tr>
                     <td class="col-md-3"><label class="form-control-label" for="formGroupExampleInput">Mã giảm giá: </label></td>

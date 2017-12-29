@@ -81,17 +81,17 @@ class CategoriesController extends Controller
         return redirect('admin/category/')->with($alert);
     }
 
-    public function delete($category) {
-        $cate = new Category;
-        $query = $cate->where('category_id', $category)->delete();
-        if ($query > 0) {
-            $alert = ['passes' => 'Đã xóa!'];
-        } else {
-            $alert = ['error' => 'Lỗi! Chưa xóa được!'];
-        }
+    // public function delete($category) {
+    //     $cate = new Category;
+    //     $query = $cate->where('category_id', $category)->delete();
+    //     if ($query > 0) {
+    //         $alert = ['passes' => 'Đã xóa!'];
+    //     } else {
+    //         $alert = ['error' => 'Lỗi! Chưa xóa được!'];
+    //     }
 
-        return redirect('admin/category/')->with($alert);
-    }
+    //     return redirect('admin/category/')->with($alert);
+    // }
     public function delete($category) {
         if((Auth::user()->position) == 'Admin' || (Auth::user()->position) == 'Keeper') {
             $cate = new Category;

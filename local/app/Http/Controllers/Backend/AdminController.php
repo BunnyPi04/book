@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\demo;
 use Validator;
-use App\Employee;
+use App\User;
+use App\Comment;
+use App\Order;
 
 class AdminController extends Controller
 {
@@ -14,7 +16,12 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
     public function index() {
-    	return view('backend.admin');
+        $countUser = User::all()->count();
+        $countCommentUnread = Comment::where('seen', 0)->count();
+        $countOrderPending = Order::where('status', 'Pending')->count();
+        $countOrderDelivering = Order::where('status', 'Delivering')->count();
+
+    	return view('backend.admin', compact('countUser', 'countCommentUnread', 'countOrderDelivering', 'countOrderPending'));
     }
 
     public function getLogin() {

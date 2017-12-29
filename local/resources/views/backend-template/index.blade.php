@@ -1,0 +1,61 @@
+@extends('backend-template.master2')
+@section('main')
+<p id="notice"><%= notice %></p>
+<div class="block">
+    <h1>Ideas</h1>
+    <% @ideas.each do |idea| %>
+    <% @cmtCount = 0 %>
+    <% @thankCount = 0 %>
+    <div class="block">
+        <div class="row idea-title">
+            <img src="https://cdn4.iconfinder.com/data/icons/education-and-school-flat-icons/512/lightbulb_lamp_idea_ideas_education_equipment_learning_object_school_item_college_flat_icon_symbol-128.png" />
+            <a href="/"><%= idea.name %></a>
+        </div>
+        <div class="row idea-img">
+            <%= image_tag idea.picture_url(:thumb) if idea.picture? %>
+            <div class="mini">
+                <% idea.thanks.each do |thk| @thankCount += 1 end%>
+                <p><img src="https://cdn0.iconfinder.com/data/icons/squarico/135/squarico-08-128.png" style="width:20px; margin: 0px 15px; padding:0"><%= @thankCount%> Thanks</p>
+            </div>
+            <br/>
+            <div class="mini">
+                <% idea.comments.each do |cmt| @cmtCount += 1 end%>
+                <p><img src="https://cdn2.iconfinder.com/data/icons/mixed-rounded-flat-icon/512/chat-128.png" style="width:20px; margin: 0px 15px; padding:0;"><%= @cmtCount%> Comments</p>
+            </div>
+            <p><b>Description</b></p>
+            <p><%= idea.description %></p>
+        </div>
+        <div class="row idea-btn">
+            <div class="btn"> <img src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_view-128.png"/> <%= link_to 'Show', idea %> </div>
+            <div class="btn"> <img src="https://cdn3.iconfinder.com/data/icons/edition/100/pen_2-128.png"/> <%= link_to 'Edit', edit_idea_path(idea) %> </div>
+            <div class="btn"> <img src="https://cdn0.iconfinder.com/data/icons/basic-ui-elements-plain/385/010_x-128.png"/> <%= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %> </div>
+        </div>
+    </div>
+    <% end %>
+    <% if false %> 
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Picture</th>
+                <th colspan="3"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @ideas.each do |idea| %>
+            <tr>
+                <td><%= idea.name %></td>
+                <td><%= idea.description %></td>
+                <td><%= image_tag idea.picture_url, width: '100%' if idea.picture.present? %></td>
+                <td><%= link_to 'Show', idea %></td>
+                <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
+                <td><%= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <% end %>
+    <br>
+</div>
+@stop

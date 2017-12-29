@@ -17,7 +17,7 @@
             {{ csrf_field() }}
             @if (isset($query))
                 @foreach ($query as $item)
-                    <table class="edit">
+                    <table class="edit no-border">
                         <tr>
                             <input type="hidden" name="book_id" value="{{$item['book_id']}}">
                             <td><div class="form-group">

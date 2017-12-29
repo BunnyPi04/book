@@ -32,7 +32,7 @@ class BooksController extends Controller
             ->select('books.sku', 'books.book_id', 'books.book_name', 'books.is_new', 'books.is_hightlight', 'books.publisher_id', 'books.author', 'books.image', 'books.price', 'books.special_price', 'books.author', 'publishers.publisher_name')
             ->leftJoin('publishers', 'books.publisher_id', '=', 'publishers.publisher_id')
             ->orderBy('books.book_id', 'desc')
-            ->get();
+            ->paginate(10);
         $category_value = $category
             ->select('categories.category_name', 'category_values.category_id', 'category_values.sku')
             ->leftJoin('categories', 'category_values.category_id', '=', 'categories.category_id')

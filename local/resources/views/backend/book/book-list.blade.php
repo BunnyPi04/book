@@ -13,7 +13,7 @@
                      {{ session('error') }} <br/> 
                 </div> 
             @endif
-            <table  id="datatbl" class="list-tb calibri">
+            <table id="datatbl" class="list-tb calibri">
                 <thead>
                     <tr>
                         <th class="col-md-1">SKU</th>
@@ -62,21 +62,19 @@
                 </tbody>
             </table>
         </div>
-        <script type="text/javascript">
-        // $(document).ready(function(e) {
-        //     $('.pagination li a').click(function() {
-        //         var page = $(this).attr('href').split('page=')[1];
-        //         $.get('book?page=' + page, function(data) {
-        //             $('body').html(data);
-        //         });
-        //         return false;
-        //         })
-        //     });
-        $(document).ready(function() {
-            $('#datatbl').dataTable();
-        } );
-        </script>
-
-        {{-- {{$query->links()}} --}}
+        {{ $query->links() }}
     </div>
 @stop
+@section('scripts')
+<script type="text/javascript">
+    $(document).ready(function(e) {
+        $('.pagination li a').click(function() {
+            var page = $(this).attr('href').split('page=')[1];
+            $.get('book?page=' + page, function(data) {
+                $('body').html(data);
+            });
+            return false;
+            })
+        });
+    </script>
+@endsection

@@ -16,7 +16,7 @@
     @endif
     <div>
         <form method="post">
-            <table>
+            <table class="no-border">
                 {{ csrf_field() }}
                 <tr>
                     <td class="col-md-3"><label class="form-control-label" for="formGroupExampleInput">Chọn sách: </label></td>

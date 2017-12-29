@@ -1,5 +1,4 @@
 @extends('master')
-
 @section('main')
 <div class="book-block">
     <h3  class="book-block-title"><a href="#">Thông tin sách</h3>
@@ -33,11 +32,18 @@
             <br />
             <p><h4><b>Tình trạng: </b></h4>
                 @if ($sum['count'] != 0)
-                    Còn hàng</p>
-                    <form id="cart-form">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <p class="text-center"><button type="button" class="btn btn-warning" onclick="add_item({{ $book['book_id']}})">Thêm vào giỏ</button></p>
-                    </form>
+                        Còn hàng</p>
+                    @if (Auth::guest())
+                        <form id="cart-form">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <p class="text-center"><a href="{{ asset('/login/') }}" class="btn btn-warning">Đăng nhập để mua sản phẩm</a></p>
+                        </form>
+                    @else
+                        <form id="cart-form">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <p class="text-center"><button type="button" class="btn btn-warning" onclick="add_item({{ $book['book_id'] }})">Thêm vào giỏ</button></p>
+                        </form>
+                    @endif
                 @else
                     Hết hàng</p>
                 @endif</th>
@@ -47,23 +53,25 @@
     <h4><b>Giới thiệu sách</b></h4>
     <p class="text-justify sumarize">{!! $book['description'] !!}</p>
     </div>
-    @endforeach
-    @endif
     <hr>
     <div>
         <h4><b>Viết bình luận</b></h4>
             @if (Auth::guest())
                 <textarea name="description" disabled="1" placeholder="Bạn phải đăng nhập để bình luận"></textarea>
             @else
-            <input type="hidden" value="{{ csrf_token() }}">
             <form name="description" method="post" action="">
+                {{ csrf_field() }}
                 <label>Username: {{ Auth::user()->name }}</label>
                 <input type="hidden" name="name" value="{{ Auth::user()->name }}"><br/>
                 <input type="hidden" name="book_id" value="{{ $book['book_id']}}">
-                <textarea name="description"></textarea>
+                <label>Nội dung:</label>
+                <textarea name="description" required=""></textarea>
+                <input type="submit" class="btn btn-warning" value="Đăng bình luận">
             </form>
             @endif
     </div>
+    @endforeach
+    @endif
     @if (isset($comments))
         @foreach($comments as $item)
             <div class="comments-div">

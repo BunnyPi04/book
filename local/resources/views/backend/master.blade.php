@@ -4,7 +4,7 @@
     <title>Quản trị admin</title>
     <meta name="author" content="lolkittens">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="{{URL::asset('css/font-awesome-4.7.0/css/font-awesome.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
     <link rel="stylesheet" href="{{ asset('css/bs-style.css') }} "/>
 </head>
@@ -48,7 +48,7 @@
             <!-- left menu -->
             <div class="col-md-3" id="left-menu">
                 <ul class="sidebar-nav">
-                    <li><a href="#">Danh Mục</a></li>
+                    <li><a href="{{ asset('/admin/') }}">Danh Mục</a></li>
                     <li><a href="{{ asset('/admin/book') }}">Danh sách sản phẩm</a></li>
                     <li><a href="{{ asset('/admin/publisher') }}">Nhà xuất bản</a></li>
                     <li><a href="{{ asset('/admin/category') }}">Thể loại sách</a></li>
@@ -74,9 +74,8 @@
         <!-- footer-->
         @include('layouts.footer')
     </div>
-
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
 
     <script src="{{ asset('/local/public/ckeditor/ckeditor.js') }}"></script>

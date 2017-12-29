@@ -15,7 +15,7 @@
     @endif
     <div>
         <form method="post" onsubmit="return validateCouponForm();"> 
-            <table>
+            <table class="no-border">
                 {{ csrf_field() }}
                 @if (isset($query))
                 <input type="hidden" name="coupon_id" value="{{ $query['coupon_id'] }}">

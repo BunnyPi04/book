@@ -21,7 +21,7 @@
     <div>
         <form method="post" enctype="multipart/form-data" > 
             {{ csrf_field() }}
-            <table class="edit">
+            <table class="edit no-border">
                 <tr>
                     <td class="col-md-3"><div class="form-group">
                         <label class="form-control-label" for="formGroupExampleInput">SKU: </label>
@@ -91,21 +91,22 @@
         </form>
     </div>
 </div>
-    <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                
-                reader.onload = function (e) {
-                    $('#preview').attr('src', e.target.result);
-                }
-                
-                reader.readAsDataURL(input.files[0]);
+@stop
+@section('scripts')
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#preview').attr('src', e.target.result);
             }
+            
+            reader.readAsDataURL(input.files[0]);
         }
-
-        $("#imgInp").change(function(){
-            readURL(this);
-        });
-    </script>
+    }
+    $("#imgInp").change(function(){
+        readURL(this);
+    });
+</script>
 @stop

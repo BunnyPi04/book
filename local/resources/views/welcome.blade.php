@@ -22,7 +22,7 @@
             <a href="#"><img src="{{asset('/local/public/images/sale2.jpg')}}" alt="slide3" width="100%"/></a>
         </div>
         <div class="item">
-            <a href="#"><img src="{{asset('/local/public/images/codauphapsu.jpg')}}" alt="slide4" width="100%"/></a>
+            <a href="#"><img src="{{ asset('/local/public/images/codauphapsu.jpg') }}" alt="slide4" width="100%"/></a>
         </div>
         
         <!-- Left and right controls -->
@@ -39,8 +39,18 @@
 @stop
 
 @section('main')
+@if(Session::has('passes'))
+<div class="alert alert-success calibri">
+     {{ session('passes') }} <br/> 
+</div> 
+@endif
+@if(Session::has('error'))
+    <div class="alert alert-danger calibri">
+         {{ session('error') }} <br/> 
+    </div> 
+@endif
 <div class="book-block">
-    <h3  class="book-block-title"><a href="#">Sách mới</a></h3>
+    <h3  class="book-block-title"><a href="{{ asset('/new-book/') }}">Sách mới</a></h3>
     <ul class="book-item">
         @if (isset($new_book))
             @foreach ($new_book as $item)
@@ -89,7 +99,7 @@
 
 <!--shelf 2 -->
 <div class="book-block">
-    <h3 class="book-block-title"><a href="#">Sách nổi bật</a></h3>
+    <h3 class="book-block-title"><a href="{{ asset('/highlight-book/') }}">Sách nổi bật</a></h3>
     <ul class="book-item">
         @if (isset($hightlight_book))
             @foreach ($hightlight_book as $item)
@@ -138,7 +148,7 @@
 
 <!--shelf 3 -->
 <div class="book-block">
-    <h3  class="book-block-title"><a href="#">Sách giảm giá</a></h3>
+    <h3  class="book-block-title"><a href="{{ asset('/sale-book/') }}">Sách giảm giá</a></h3>
     <ul class="book-item">
         @if (isset($sale_book))
             @foreach ($sale_book as $item)

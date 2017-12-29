@@ -1,6 +1,7 @@
 body {
 	padding-top: 20px;
 	background: #e9ebee;
+	margin: 33px;
 }
 footer {
 	margin-top: 100px;
@@ -118,4 +119,14 @@ footer {
   background-color: transparent;
   color: #666;
   text-decoration: none;
+}
+label {
+  width: 30%;
+  float: left;
+}
+input, textarea {
+  width: 70%;
+}
+.btn2 {
+  background-color: #428bca;
 }

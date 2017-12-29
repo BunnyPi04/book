@@ -94,4 +94,85 @@ class IndexController extends Controller
                 ->get();
         return view('category', compact('category_name', 'query', 'number'));
     }
+
+    public function new_book() {
+        $book = new Book;
+        $book_values = new Book_value;
+        $query = $book->where('is_new', 1)->paginate(12);
+        $sku = [];
+        foreach ($query as $key) {
+            $sku[] = $key->sku;
+        }
+        $number = $book_values
+                ->select('category_values.category_id', 'book_values.sku', 'book_values.number')
+                ->whereIn('category_values.sku', $sku)
+                ->leftJoin('category_values', 'book_values.sku', '=', 'category_values.sku')
+                ->get();
+
+        return view('new-book', compact('query', 'number'));
+    }
+
+    public function highlight_book() {
+        $book = new Book;
+        $book_values = new Book_value;
+        $query = $book->where('is_hightlight', 1)->paginate(12);
+        $sku = [];
+        foreach ($query as $key) {
+            $sku[] = $key->sku;
+        }
+        $number = $book_values
+                ->select('category_values.category_id', 'book_values.sku', 'book_values.number')
+                ->whereIn('category_values.sku', $sku)
+                ->leftJoin('category_values', 'book_values.sku', '=', 'category_values.sku')
+                ->get();
+
+        return view('highlight-book', compact('query', 'number'));
+    }
+
+    public function sale_book() {
+        $now = Carbon::now();
+        $book = new Book;
+        $book_values = new Book_value;
+        $query = $book->where('special_price', '<>', null)
+        ->where('from_date', '<=', $now)
+        ->paginate(12);
+        $sku = [];
+        foreach ($query as $key) {
+            $sku[] = $key->sku;
+        }
+        $number = $book_values
+                ->select('category_values.category_id', 'book_values.sku', 'book_values.number')
+                ->whereIn('category_values.sku', $sku)
+                ->leftJoin('category_values', 'book_values.sku', '=', 'category_values.sku')
+                ->get();
+
+        return view('sale-book', compact('query', 'number'));
+    }
+
+    public function getSearch(Request $request) {
+        $type = $request->search_type;
+        $text = $request->search_text;
+        $text = str_replace('+', '%', $text);
+        switch ($type) {
+            case 'book_name':
+                $query = Book::where('book_name', 'like', '%'.$text.'%')->paginate(8);
+                break;
+            case 'author':
+                $query = Book::where('author', 'like', '%'.$text.'%')->paginate(8);
+                break;
+            default:
+                $query = Book::where('book_name', 'like', '%'.$text.'%')
+                        ->orWhere('author', 'like', '%'.$text.'%')
+                        ->orWhere('description', 'like', '%'.$text.'%')
+                        ->paginate(8);
+                break;
+        }
+        if ($query->count() == 0) {
+            $no = 0;
+        } else {
+            $no = 1;
+        }
+
+        return view('search', compact('query', 'no'));
+    }
 }

@@ -59,13 +59,13 @@
                 "scrollCollapse": true,
                 "paging":         false
             });
-            $('.pagination li a').click(function() {
-                var page = $(this).attr('href').split('page=')[1];
-                $.get('add?page=' + page, function(data) {
-                    $('body').html(data);
-                });
-                return false;
-            })
+            // $('.pagination li a').click(function() {
+            //     var page = $(this).attr('href').split('page=')[1];
+            //     $.get('add?page=' + page, function(data) {
+            //         $('body').html(data);
+            //     });
+            //     return false;
+            // })
         });
     </script>
 @endsection

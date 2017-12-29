@@ -1,0 +1,40 @@
+@extends('backend-template.master2')
+@section('main')
+<div class="block">
+    <p>
+        <strong>Name:</strong>
+        <%= @idea.name %>
+    </p>
+    <p>
+        <strong>Description:</strong>
+        <%= @idea.description %>
+    </p>
+    <p>
+        <strong>Picture:</strong>
+        <%= image_tag(@idea.picture_url, :class => 'idea_picture' ) if @idea.picture.present?%>
+    <h3><img src="https://cdn0.iconfinder.com/data/icons/squarico/135/squarico-08-128.png" style="width:30px; margin: 0px 15px;">Thanks</h3>
+    <% @thanks.each do |thank| %>
+    <div>
+        <strong><%= thank.user_name %></strong> has thanks this idea
+        <br />
+        <p><%= link_to 'Delete', thank_path(thank), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    </div>
+    <% end %>
+    <%= render partial: 'thanks/form', locals: { thank: @thank } %>
+    <h3><img src="https://cdn2.iconfinder.com/data/icons/mixed-rounded-flat-icon/512/chat-128.png" style="width:30px; margin: 0px 15px;">Comments</h3>
+    <% @comments.each do |comment| %>
+    <div>
+        <strong><%= comment.user_name %></strong>
+        <br />
+        <p><%= comment.body %></p>
+        <p><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    </div>
+    <% end %>
+    <%= render partial: 'comments/form', locals: { comment: @comment } %>
+    </p>
+    <div class="row">
+        <div class="btn"> <img src="https://cdn3.iconfinder.com/data/icons/edition/100/pen_2-128.png"/><%= link_to 'Edit', edit_idea_path(@idea) %> | </div>
+        <div class="btn"> <img src="https://cdn2.iconfinder.com/data/icons/social-messaging-productivity-1/128/reply-128.png"/> <%= link_to 'Back', ideas_path %> </div>
+    </div>
+</div>
+@stop

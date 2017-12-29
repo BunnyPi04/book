@@ -3,9 +3,9 @@
 @section('main')
 <div id="login" class="col-md-6">
     <h2 class="text-center">Login</h2>
-    @if (isset($error)) 
+    @if(Session::has('error'))
         <div class="alert alert-danger calibri">
-             {{ $error }} <br/> 
+             {{ session('error') }} <br/> 
         </div> 
     @endif
     <form class="form-horizontal" role="form" method="POST" action="{{ route('post_login') }}">
