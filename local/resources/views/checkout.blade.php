@@ -68,7 +68,9 @@
             </tr>
         </table>
     @endif
-        <input type="hidden" name="coupon_code" value="{{ $query['coupon_code'] }}">
+        @if (isset($query['coupon_code']))
+        	<input type="hidden" name="coupon_code" value="{{ $query['coupon_code'] }}">
+        @endif
         <input type="hidden" name="name" required value="{{ $query['name'] }}">
         <input type="hidden" name="email" required value="{{ $query['email'] }}">
         <input type="hidden" name="city" required value="{{ $query['city'] }}">

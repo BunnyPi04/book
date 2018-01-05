@@ -83,6 +83,17 @@ Route::post('/admin/invoice/create', 'Backend\InvoiceController@save');
 Route::get('/admin/invoice/show', 'Backend\InvoiceController@show');
 Route::get('/admin/invoice/delete/{$id}', 'Backend\InvoiceController@delete');
 
+Route::get('/admin/order/', 'Backend\OrderController@index');
+Route::get('/admin/order/list', 'Backend\OrderController@list');
+Route::get('/admin/order/pending', 'Backend\OrderController@pending');
+Route::get('/admin/order/shipping', 'Backend\OrderController@shipping');
+Route::get('/admin/order/edit/{order_id}', 'Backend\OrderController@getEdit');
+Route::post('/admin/order/edit/{order_id}', 'Backend\OrderController@postEdit');
+Route::get('/admin/order/delete/{order_id}', 'Backend\OrderController@delete');
+
+Route::get('/admin/comment/', 'Backend\CommentController@index');
+Route::post('/admin/comment/', 'Backend\CommentController@read');
+
 Route::get('/home', 'IndexController@index');
 Route::get('/category/{id}', 'IndexController@category');
 Route::get('/new-book/', 'IndexController@new_book');

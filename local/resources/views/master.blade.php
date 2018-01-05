@@ -2,19 +2,22 @@
 <head>
     <meta http-equiv="content-type" content="text/html" charset="utf-8"/>
     <meta name="author" content="lolkittens" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="{{URL::asset('css/font-awesome-4.7.0/css/font-awesome.min.css')}}"/>
-   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> --}}
+    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap/dist/css/bootstrap.min.css') }}"/>   
+    <link rel="stylesheet" href="{{ URL::asset('css/font-awesome-4.7.0/css/font-awesome.min.css') }}"/>
+    {{-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{URL::asset('css/bs-style.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/DataTables-1.10.16/js/jquery.dataTables.min.css')}}"/>
-    <script src="{{URL::asset('js/jquery-3.2.1.min.js')}}"></script>
-    <script src="{{URL::asset('js/jquery-3.2.1.js')}}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ URL::asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ URL::asset('js/jquery-3.2.1.js') }}"></script>
+    <script src="{{ URL::asset('css/jquery/dist/jquery.min.js') }}"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
 
-    <script src="{{URL::asset('js/myscript.js')}}"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="{{URL::asset('css/DataTables-1.10.16/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ URL::asset('js/myscript.js') }}"></script>
+    <script src="{{ URL::asset('css/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ URL::asset('css/DataTables-1.10.16/js/jquery.dataTables.min.js') }}"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    
     <script src="https://unpkg.com/sweetalert2@7.0.8/dist/sweetalert2.all.js"></script>
     <title>Tiệm sách Minh Minh</title>
 </head>
@@ -132,25 +135,6 @@ function search() {
         var type = $("#search").val();
         var search_text = $("#search-text").val();
         console.log(type);
-        // $.ajax({
-        //     type: 'post',
-        //     url: 'http://localhost/bookstore/search/' + type,
-        //     data: search-text,
-        //     success: function (data) {
-        //         $('#cart-number').text(data.content);
-        //         $('.cart_quantity_input'+book_id).val(data.qty);
-        //         $('.total'+book_id).text(data.total);
-        //         console.log(data);
-        //         swal({
-        //             position: 'top-right',
-        //             type: 'success',
-        //             title: 'Xóa thành công',
-        //             showConfirmButton: false,
-        //             timer: 1000,
-        //             width: '300px',
-        //         })
-        //     }
-        // });
     }
 }
 </script>

@@ -7,13 +7,13 @@
                 <i class="fa fa-user fa-5x"></i><a href="{{ asset('/admin/user') }}">{{ $countUser }} Người dùng </a>
             </div>
             <div class="admin">
-                <i class="fa fa-comment fa-5x"></i><a href="{{ asset('/admin/comment') }}">{{ $countCommentUnread }} Bình luận chưa đọc </a>
+                <i class="fa fa-comment fa-5x"></i><a href="{{ asset('/admin/comment/') }}">{{ $countCommentUnread }} Bình luận chưa đọc </a>
             </div>
             <div class="admin">
-                <i class="fa fa-hourglass fa-5x"></i><a href="{{ asset('/admin/order') }}">{{ $countOrderPending }} Đơn hàng chưa xử lý </a>
+                <i class="fa fa-hourglass fa-5x"></i><a href="{{ asset('/admin/order/pending') }}">{{ $countOrderPending }} Đơn hàng chưa xử lý </a>
             </div>
             <div class="admin">
-                <i class="fa fa-truck fa-5x"></i><a href="{{ asset('/admin/order') }}">{{ $countOrderDelivering }} Đơn hàng đang chuyển </a>
+                <i class="fa fa-truck fa-5x"></i><a href="{{ asset('/admin/order/shipping') }}">{{ $countOrderDelivering }} Đơn hàng đang chuyển </a>
             </div>
         </div>
     </div>

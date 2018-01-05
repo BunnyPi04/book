@@ -3,9 +3,11 @@
     <meta http-equiv="content-type" content="text/html" charset="utf-8"/>
     <title>Quản trị admin</title>
     <meta name="author" content="lolkittens">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="{{ URL::asset('css/bootstrap/dist/css/bootstrap.min.css') }}"/>
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> --}}
     <link rel="stylesheet" href="{{URL::asset('css/font-awesome-4.7.0/css/font-awesome.min.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+    {{-- <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css"> --}}
+    <link rel="stylesheet" href="{{URL::asset('css/DataTables-1.10.16/css/jquery.dataTables.css')}}"/>
     <link rel="stylesheet" href="{{ asset('css/bs-style.css') }} "/>
 </head>
 
@@ -58,7 +60,7 @@
                     @if (((Auth::user()->position) == 'Admin'))
                         <li><a href="{{ asset('/admin/coupon') }}">Coupon</a></li>
                         <li><a href="{{ asset('/admin/user') }}">Quản lý người dùng</a></li>
-                        <li><a href="{{ asset('/admin/book') }}">Đơn đặt hàng online</a></li>
+                        <li><a href="{{ asset('/admin/order') }}">Đơn đặt hàng online</a></li>
                         <li><a href="{{ asset('/admin/invoice/') }}">Báo cáo hóa đơn</a></li>
                     @endif
                         <li><a href="{{ asset('/admin/invoice/create') }}">Tạo hóa đơn</a></li>
@@ -74,6 +76,9 @@
         <!-- footer-->
         @include('layouts.footer')
     </div>
+    <script src="{{ URL::asset('css/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ URL::asset('css/DataTables-1.10.16/js/jquery.dataTables.min.js') }}"></script>
+
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>

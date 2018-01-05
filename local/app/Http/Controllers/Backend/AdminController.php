@@ -19,7 +19,7 @@ class AdminController extends Controller
         $countUser = User::all()->count();
         $countCommentUnread = Comment::where('seen', 0)->count();
         $countOrderPending = Order::where('status', 'Pending')->count();
-        $countOrderDelivering = Order::where('status', 'Delivering')->count();
+        $countOrderDelivering = Order::where('status', 'Shipping')->count();
 
     	return view('backend.admin', compact('countUser', 'countCommentUnread', 'countOrderDelivering', 'countOrderPending'));
     }

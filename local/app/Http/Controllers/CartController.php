@@ -58,7 +58,7 @@ class CartController extends Controller
             ->json(['content' => $content,
                     'qty' => $qty,
                     'total' => $total
-                ]);
+            ]);
     }
 
     public function removeItem($id) 
@@ -134,25 +134,38 @@ class CartController extends Controller
     public function checkout(CheckoutRequest $request) {
         $query['cart'] = Cart::content();
         $cart = Cart::content();
-        $coupon = Coupon::where('code', $request->coupon_code)->first();
-        $info['total'] = Cart::total();
-        $info['total'] = floatval($info['total']) * 1000;
-        if ($coupon == null) {
-            $error = 'Mã coupon không đúng';
-            $alert = ['error' => 'Mã coupon không đúng!'];
-            $info['grandTotal'] = $info['total'];
-        } else {
-            $query['coupon_code'] = $request->coupon_code;
-            if ($coupon->type == 'Percent') {
-                $amount = floatval($coupon->amount) * 1000;
-                $info['grandTotal'] = $info['total'] - ($info['total'] / 100) * $coupon->amount;
-                $info['sale_coupon_amount'] = $info['total'] - $info['grandTotal'];
-            } else {
-                $info['grandTotal'] = $info['total'] - $coupon->amount;
-                $info['sale_coupon_amount'] = $coupon->amount;
-            }
-        }
+        if (isset($request->coupon_code)) {
+	        $coupon = Coupon::where('code', $request->coupon_code)->first();
+	        $info['total'] = Cart::total();
+	        $info['total'] = floatval($info['total']) * 1000;
+	        if ($coupon == null) {
+	            $error = 'Mã coupon không đúng';
+	            $alert = ['error' => 'Mã coupon không đúng!'];
+	            $info['grandTotal'] = $info['total'];
+                $data['grandTotal'] = $info['total'];
+	        } else {
+	            $query['coupon_code'] = $request->coupon_code;
+	            if ($coupon->type == 'Percent') {
+	                $amount = floatval($coupon->amount) * 1000;
+	                $info['grandTotal'] = $info['total'] - ($info['total'] / 100) * $coupon->amount;
+	                $info['sale_coupon_amount'] = $info['total'] - $info['grandTotal'];
+                    $data['sale_coupon_amount'] = $info['sale_coupon_amount'];
+	            } else {
+	                $info['grandTotal'] = $info['total'] - $coupon->amount;
+                    $data['grandTotal'] = $info['grandTotal'];
+	                $info['sale_coupon_amount'] = $coupon->amount;
+                    $data['sale_coupon_amount'] = $info['sale_coupon_amount'];
+	            }
+	        }
+    	} else {
+    		$info['total'] = Cart::total();
+	        $info['total'] = floatval($info['total']) * 1000;
+	        $info['grandTotal'] = $info['total'];
+            $data['grandTotal'] = $info['grandTotal'];
+    	}
         $data['info'] = $request->all();
+        $data['cart'] = Cart::content();
+        $data['total'] = Cart::total();
         $query['cart'] = Cart::content();
         $query['name'] = $request->name;
         $query['email'] = $request->email;
@@ -184,20 +197,20 @@ class CartController extends Controller
             $detail->subtotal = $item->total;
             $detail->save();
         }
+        Mail::send('email', $data, function($message) use ($email) {
+            $message->from('hangpt.mail@gmail.com', 'Minh Minh Bookstore');
+            $message->to($email, $email);
+            $message->cc('hangpt248@gmail.com', 'Phạm Thu Hằng');
+            $message->subject('Xác nhận hóa đơn mua hàng Tiệm sách Minh Minh');
+            // $message->priority(3);
+            // $message->attach('pathToFile');
+        });
         Coupon::where('code', $request->coupon_code)->delete();
 
         Cart::destroy();
         $alert = ['success' => 'Đơn hàng đã được gửi!'];
 
-        // $order_detail = new Order_detail;
-        // Mail::send('email', $data, function($message) use ($email) {
-        //     $message->from('hangpt.mail@gmail.com', 'Minh Minh Bookstore');
-        //     $message->to($email, $email);
-        //     $message->cc('hangpt248@gmail.com', 'Phạm Thu Hằng');
-        //     $message->subject('Xác nhận hóa đơn mua hàng Tiệm sách Minh Minh');
-        //     // $message->priority(3);
-        //     // $message->attach('pathToFile');
-        // });
+        $order_detail = new Order_detail;
         return redirect('/home/')->with($alert);
     }
 

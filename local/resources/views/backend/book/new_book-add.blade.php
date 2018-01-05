@@ -35,7 +35,7 @@
                             {{ $item['author'] }}
                         </td>
                         <td class="text-center">
-                            <input type="checkbox" name="is_new[{{$item['sku']}}]" value="{{ $item['sku'] }}"
+                            <input type="checkbox" name="is_new[{{ $item['sku'] }}]" value="{{ $item['sku'] }}"
                             @if($item['is_new'] == 1)
                                 checked
                             @endif

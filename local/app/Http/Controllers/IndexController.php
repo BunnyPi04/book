@@ -155,7 +155,8 @@ class IndexController extends Controller
         $text = str_replace('+', '%', $text);
         switch ($type) {
             case 'book_name':
-                $query = Book::where('book_name', 'like', '%'.$text.'%')->paginate(8);
+                // $query = Book::where('book_name', 'like', '%'.$text.'%')->paginate(8);
+                $query = Book::where('book_name', 'like', '%'.$text.'%')->offset($request->total ?? 0)->limite(8)->get();
                 break;
             case 'author':
                 $query = Book::where('author', 'like', '%'.$text.'%')->paginate(8);

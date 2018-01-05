@@ -49,19 +49,42 @@
             @endforeach
         @endif
     </ul>
-    {{$query->links()}}
+    {{$query->append(['search_text' => $value])->links()}}
+    <div class="col-md-12">
+        <button class="btn btn-success btn-lg btn-block xemthem"> Xem thêm... </button>
+    </div>
 </div>
 @stop
 
 @section('scripts')
 <script type="text/javascript">
     $(document).ready(function() { 
+        $(document).ajaxStart(function() {
+            next.append("<i>").addClass('fa fa-spinner');
+        })
+        $(document).ajaxStop(function() {
+            next.find("i").removeClass('fa fa-spinner');
+        })
         var heights = $(".book-area").map(function() {
             return $(this).height();
         }).get(),
 
         maxHeight = Math.max.apply(null, heights);
 
+        var next = $('.xemthem');
+        var total = 8;
+        next.click(function() {
+            $ajax({
+                url: "",
+                data: {total: total}
+            }).done(function(data) {
+                $('.').append(data);
+                $total += 8;
+                if (data == "") {
+                    alert('Đã hết sản phẩm');
+                }
+            });
+        });
         $(".book-area").height(maxHeight);
         $('.pagination li a').click(function() {
                 var page = $(this).attr('href').split('page=')[1];

@@ -1,0 +1,196 @@
+body {
+	padding-top: 20px;
+	background: #e9ebee;
+	margin: 33px;
+}
+footer {
+	margin-top: 100px;
+}
+table, td, th {
+	vertical-align: middle;
+	border: none;
+}
+th {
+	border-bottom: 1px solid #DDD;
+}
+label {
+	/*width: 30%;*/
+	width: 100%;
+	float: left;
+}
+input, textarea {
+	width: 100%;
+}
+footer {
+	background-color: #b3b3ff;
+	padding: 30px 0;
+}
+.field {
+	margin-bottom: 10px;
+	font-size: 15px;
+	line-height: 30px;
+}
+.form-group {
+	display: table;
+	width: 100%;
+}
+.checkbox, .checkbox label {
+	padding: 0px !important;
+}
+.idea_picture {
+	width:100%;
+}
+#head-navbar {
+	background: #4267b2;
+}
+.wh {
+	color: white;
+}
+.active {
+	background-color: #3b5da0;
+}
+.left-item {
+	list-style: none;
+	width: 180px;
+	padding: 8px; cursor: pointer;
+}
+.left-item a {
+	text-decoration: none;
+	background-color: transparent;
+	color: #000;
+}
+.left-item-active, .left-item:hover {
+	border-radius: 3px;
+	margin: 2px; background: #f6f7f9;
+	border: 1px solid #dddfe2;
+}
+.item-img {
+	float: left;
+	width: 20px;
+	margin-right: 10px;
+}
+.idea-title {
+	font-size: 20px;
+	line-height: 40px;
+}
+.idea-title img {
+	width: 40px;
+	float: left;
+	margin: 0px 15px;
+}
+.idea-img a{
+	margin: 15px;
+}
+.idea-img img {
+	width: 100%;
+	padding: 15px;
+	float: left;
+}
+.idea-img p {
+	margin: 0px 15px;
+}
+.idea-btn {
+	margin: 0;
+	border-top: 1px solid #e5e5e5;
+}
+.btn {
+	border: none;
+	padding:10px;
+	background-color: transparent;
+	float: left;
+}
+.btn:hover {
+	background-color: #b3b3ff;
+	text-decoration: none;
+}
+.btn a:hover {
+	text-decoration: none;
+	background: transparent;
+	color: #666;
+}
+.btn img {
+	width: 20px;
+	margin: 0px 10px;
+}
+.block {
+	background-color: white;
+	padding: 15px;
+	margin-bottom: 15px;
+	border: 1px solid #dddfe2;
+}
+.mini {
+	display: inline-block;
+}
+.navlink {
+	color: white;
+	margin: 0px 15px;
+}
+.navlink:visited {
+	color: white;
+}
+.ava {
+	width: 30px;
+}
+.dropdown-menu>ul>li:hover {
+	background-color: #f8f9fa;
+}
+#dropdownMenuButton:hover, #dropdownMenuButton:active, #dropdownMenuButton:visited {
+	color: white;
+}
+.dropdown-item {
+	display: block;
+}
+.dropdown-item:hover {
+	background-color: transparent;
+	color: #666;
+	text-decoration: none;
+}
+.btn2 {
+	background-color: #428bca;
+}
+#myCarousel {
+	text-align: center;
+	font-size: 25px;
+}
+.slide-img {
+	width: 100%;
+}
+#left-menu, #right-menu {
+	position: fixed;
+	padding: 0;
+}
+#left-menu>ul {
+	padding: 0;
+	padding-top: 50px;
+}
+.rating-stars ul {
+    list-style-type:none;
+    padding:0;
+    -moz-user-select:none;
+    -webkit-user-select:none;
+}
+.rating-stars ul > li.star {
+    display:inline-block;
+}
+
+/* Idle State of the stars */
+.rating-stars ul > li.star > i.fa {
+    font-size:2.5em; /* Change the size of the stars */
+    color:#ccc; /* Color on idle state */
+}
+
+/* Hover state of the stars */
+.rating-stars ul > li.star.hover > i.fa {
+    color:#FFCC36;
+}
+
+/* Selected state of the stars */
+.rating-stars ul > li.star.selected > i.fa {
+    color:#FF912C;
+}
+.stars {
+	margin: 0;
+}
+.star {
+	font-size: 7px;
+}

@@ -1,5 +1,15 @@
 @extends('master')
 @section('main')
+<script type="text/javascript">
+    function validate(){
+        var test = new RegExp("/^[a-zA-Z0-9!@#_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$/");
+        if(!name.match(test)){
+            alert("Bạn phải nhập ký tự tiếng việt!");
+            return false;
+        }               
+        return true;
+    }
+</script>
 <div class="book-block">
     <h3  class="book-block-title"><a href="#">Thông tin sách</h3>
     @if (isset($books))
@@ -59,14 +69,17 @@
             @if (Auth::guest())
                 <textarea name="description" disabled="1" placeholder="Bạn phải đăng nhập để bình luận"></textarea>
             @else
-            <form name="description" method="post" action="">
+            <form name="description" method="post" action="" name="logOn">
                 {{ csrf_field() }}
                 <label>Username: {{ Auth::user()->name }}</label>
                 <input type="hidden" name="name" value="{{ Auth::user()->name }}"><br/>
                 <input type="hidden" name="book_id" value="{{ $book['book_id']}}">
                 <label>Nội dung:</label>
-                <textarea name="description" required=""></textarea>
-                <input type="submit" class="btn btn-warning" value="Đăng bình luận">
+                <br/>
+                {{-- <textarea name="description" required="" pattern="[a-zA-Z0-9!@#$%^*_|]{6,25}"></textarea> --}}
+                <input type="text" name="description" required="" style="width: 400px;">
+                <br/>
+                <input type="submit" class="btn btn-warning" onclick="return validate();" value="Đăng bình luận">
             </form>
             @endif
     </div>
@@ -76,9 +89,11 @@
         @foreach($comments as $item)
             <div class="comments-div">
                 <h4>{{ $item['name'] }}</h4>
+                <small><b>at </b>{{ $item['created_at'] }}</small>
                 <p>{!! $item['description'] !!}</p>
             </div>
         @endforeach
     @endif
 </div>
+
 @stop

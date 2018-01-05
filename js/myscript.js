@@ -28,7 +28,7 @@ function validateCouponForm() {
         return true;
     }
 }
-var shopping_cart=[];
+var shopping_cart = [];
 var q = new Date();
 var m = q.getMonth()+1;
 var d = q.getDay();
@@ -42,11 +42,52 @@ function add_item(book_id) {
         data: book_id,
         success: function (data) {
             $('#cart-number').text(data.content);
-            console.log(data);
+            $('.cart_quantity_input'+book_id).val(data.qty);
+            $('.total'+book_id).text(data.total);
             swal({
                 position: 'top-right',
                 type: 'success',
                 title: 'Thêm thành công',
+                showConfirmButton: false,
+                timer: 1000,
+                width: '300px',
+            })
+        }
+    });
+}
+function remove_item(book_id) {
+    $.ajax({
+        type: 'get',
+        url: 'http://localhost/bookstore/cart/remove/' + book_id,
+        data: book_id,
+        success: function (data) {
+            $('#cart-number').text(data.content);
+             $('.cart_quantity_input'+book_id).val(data.qty);
+            $('.total'+book_id).text(data.total);
+            console.log(data);
+            swal({
+                position: 'top-right',
+                type: 'success',
+                title: 'Xóa thành công',
+                showConfirmButton: false,
+                timer: 1000,
+                width: '300px',
+            })
+        }
+    });
+}
+function remove_book(book_id) {
+    $.ajax({
+        type: 'get',
+        url: 'http://localhost/bookstore/cart/removeBook/' + book_id,
+        data: book_id,
+        success: function (data) {
+            $('#cart-number').text(data.content);
+            console.log(data);
+            swal({
+                position: 'top-right',
+                type: 'success',
+                title: 'Xóa thành công',
                 showConfirmButton: false,
                 timer: 1000,
                 width: '300px',
@@ -135,8 +176,8 @@ function display_cart() {
     cell_th_nameSKU.innerHTML = 'Tên sp';
     cell_th_Number.innerHTML = 'SL';
     cell_th_Price.innerHTML = 'Giá bìa';
-    cell_th_Special_price = 'Sale';
-    cell_th_Sub_total = 'Thành tiền';
+    cell_th_Special_price.innerHTML = 'Sale';
+    cell_th_Sub_total.innerHTML = 'Thành tiền';
     for (var product in shopping_cart) {
         var row = order_body.insertRow();
         //Create product Infomation

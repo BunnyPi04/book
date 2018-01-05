@@ -12,13 +12,23 @@ body {
 }
 #login{
     float:none;
-    margin:50px auto;}
+    margin:50px auto;
+}
+.no-border th, .no-border td{
+    border: none;
+}
 h1 {
     font-family: Sofia;
     font-weight: bold;
     margin: 25px;
 }
-
+.cart-table, th, td {
+    padding: 5px;
+    border: 1px solid black;
+}
+.float-left {
+    float: left;
+}
 #custom-search-input{
     padding: 3px;
     border: solid 1px #E4E4E4;
