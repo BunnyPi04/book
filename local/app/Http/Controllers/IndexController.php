@@ -11,6 +11,7 @@ use App\Book_value;
 use App\Comment;
 use App\Store;
 use App\Book;
+use App\User;
 use App\Publisher;
 use App\Category;
 use Auth;
@@ -28,6 +29,13 @@ class IndexController extends Controller
         ]);
 
         return compact('category', 'store');
+    }
+
+    public function info() {
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        
+        return view('info', compact('user'));
     }
 
     public function index() {

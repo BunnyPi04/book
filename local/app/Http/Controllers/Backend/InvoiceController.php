@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\InvoiceCheck;
 use App\Http\Requests;
 use App\InvoiceDetail;
+use App\Book_value;
 use App\Invoice;
 use App\Store;
 use App\Book;
@@ -42,6 +43,11 @@ class InvoiceController extends Controller
     	return $query;
     }
 
+    public function print(Request $request) {
+        dd($request);
+        return 'ok';
+    }
+
     public function list() {
         if((Auth::user()->position) == 'Admin') {
             $invoice = new Invoice;
@@ -60,8 +66,27 @@ class InvoiceController extends Controller
         if((Auth::user()->position) == 'Admin' || (Auth::user()->position) == 'Cashier') {
             $invoice = new Invoice;
             $invoiceDetail = new InvoiceDetail;
-            $book = Book::all();
-            return view('backend.invoice.invoice-create', compact('book'));
+            // $book = Book::all();
+            $store = new Store;
+            $query_store = $store
+                            ->where('store_id', Auth::user()->store_id)
+                            ->first();
+            $book_value = new Book_value;
+            $query_book_value = $book_value
+                            ->where('store_id', Auth::user()->store_id)
+                            ->get();
+            $sku = [];
+            foreach ($query_book_value as $key) {
+                $sku[] = $key->sku;
+            }
+            $book = new Book;
+            $query_book = $book_value
+                        ->select('books.*', 'book_values.number')
+                        ->where('book_values.store_id', Auth::user()->store_id)
+                        ->leftJoin('books', 'book_values.sku', 'books.sku')
+                        ->get();
+
+            return view('backend.invoice.invoice-create', compact('query_store', 'query_book_value', 'query_book'));
         } else
         {
             $alert = ['error' => 'You dont have permission'];

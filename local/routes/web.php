@@ -14,6 +14,7 @@ Route::get('/logout/', 'LoginController@logout')->name('get_logout');
 
 Route::get('/admin/', 'Backend\AdminController@index');
 Route::get('/search', 'IndexController@getSearch');
+Route::get('/personal', 'IndexController@info');
 //book
 Route::get('/book/show/{book_id}', 'IndexController@show');
 Route::post('/book/show/{book_id}', 'CommentController@add');
@@ -64,6 +65,7 @@ Route::post('/admin/category/edit/{category_id}', 'Backend\CategoriesController@
 Route::post('/admin/category/delete/{category}', 'Backend\CategoriesController@delete');
 //book_value
 Route::get('/admin/book_value/', 'Backend\BookValueController@list');
+Route::post('/admin/book_value/', 'Backend\BookValueController@getStore');
 Route::get('/admin/book_value/add', 'Backend\BookValueController@getAdd');
 Route::post('/admin/book_value/add', 'Backend\BookValueController@postAdd');
 Route::get('/admin/book_value/edit/{id}', 'Backend\BookValueController@getEdit');
@@ -80,6 +82,7 @@ Route::post('/admin/coupon/delete/{id}', 'Backend\CouponsController@delete');
 Route::get('/admin/invoice/', 'Backend\InvoiceController@list');
 Route::get('/admin/invoice/create', 'Backend\InvoiceController@create');
 Route::post('/admin/invoice/create', 'Backend\InvoiceController@save');
+Route::get('/admin/invoice/print', 'Backend\InvoiceController@print');
 Route::get('/admin/invoice/show', 'Backend\InvoiceController@show');
 Route::get('/admin/invoice/delete/{$id}', 'Backend\InvoiceController@delete');
 
@@ -90,9 +93,14 @@ Route::get('/admin/order/shipping', 'Backend\OrderController@shipping');
 Route::get('/admin/order/edit/{order_id}', 'Backend\OrderController@getEdit');
 Route::post('/admin/order/edit/{order_id}', 'Backend\OrderController@postEdit');
 Route::get('/admin/order/delete/{order_id}', 'Backend\OrderController@delete');
+Route::get('/admin/order/statistic', 'Backend\OrderController@statistic');
+Route::post('/admin/order/statistic', 'Backend\OrderController@postStatistic');
 
 Route::get('/admin/comment/', 'Backend\CommentController@index');
 Route::post('/admin/comment/', 'Backend\CommentController@read');
+
+Route::get('/admin/sale/', 'Backend\SaleController@getSale');
+Route::post('/admin/sale/', 'Backend\SaleController@createSale');
 
 Route::get('/home', 'IndexController@index');
 Route::get('/category/{id}', 'IndexController@category');

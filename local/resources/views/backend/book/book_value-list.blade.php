@@ -2,6 +2,22 @@
 @section('main')
     <div class="row book-block">
         <h3 class="book-block-title"><a href="#">Tình trạng các kho </a><a href="{{asset('/admin/book_value/add')}}"><button type="button" class="btn btn-warning top-btn orbtn"> + Thêm sách vào kho</button></a></h3>
+        <div class="row" style="margin-bottom: 10px;">
+            <form method="post">
+                {{ csrf_field() }}
+                <div class="col-md-4">Chọn kho hàng</div>
+                <div class="col-md-5">
+                    <select name="store" required="">
+                        @foreach ($stores as $store)
+                            <option value="{{ $store->store_id }}">{{ $store->store_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-3" style="text-align: right;">
+                    <input type="submit" class="btn btn-warning top-btn" value="Lọc thông tin">
+                </div>
+            </form>
+        </div>
         <div>
             @if(Session::has('passes'))
             <div class="alert alert-success calibri">

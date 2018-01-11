@@ -79,8 +79,11 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/personal/') }}">Thông tin tài khoản</a></li>
+                                @if (((Auth::user()->position) == 'Admin') || ((Auth::user()->position) == 'Keeper') || ((Auth::user()->position) == 'Cashier'))
+                                    <li><a href="{{ asset('/admin/') }}">Trang quản trị</a></li>
+                                @endif
                                 <li>
                                     <a href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();
@@ -91,9 +94,6 @@
                                         {{ csrf_field() }}
                                     </form>
                                 </li>
-                                @if (((Auth::user()->position) == 'Admin') || ((Auth::user()->position) == 'Keeper') || ((Auth::user()->position) == 'Cashier'))
-                                    <li><a href="{{ asset('/admin/') }}">Trang quản trị</a></li>
-                                @endif
                             </ul>
                         </li>
                     @endif

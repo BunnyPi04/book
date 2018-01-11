@@ -20,6 +20,7 @@ class BookValueController extends Controller
     public function list() {
     	if((Auth::user()->position) == 'Admin' || (Auth::user()->position) == 'Keeper' || (Auth::user()->position) == 'Cashier') {
 	    	$value = new Book_value;
+	    	$stores = Store::all();
 	    	$query = $value
 	    		->orderBy('book_values.sku')
 	    		->select('book_values.id', 'book_values.sku', 'book_values.number', 'book_values.store_id', 'books.book_name', 'stores.store_name')
@@ -27,7 +28,26 @@ class BookValueController extends Controller
 	    		->leftJoin('stores', 'book_values.store_id', '=', 'stores.store_id')
 	    		->paginate(10);
 
-	    	return view('backend.book.book_value-list', compact('query'));
+	    	return view('backend.book.book_value-list', compact('query', 'stores'));
+    	} else {
+    		return redirect('home/');
+    	}
+    }
+
+    public function getStore(Request $request) {
+  		$store_id = $request->store;
+    	if((Auth::user()->position) == 'Admin' || (Auth::user()->position) == 'Keeper' || (Auth::user()->position) == 'Cashier') {
+	    	$value = new Book_value;
+	    	$stores = Store::all();
+	    	$query = $value
+	    		->orderBy('book_values.sku')
+	    		->select('book_values.id', 'book_values.sku', 'book_values.number', 'book_values.store_id', 'books.book_name', 'stores.store_name')
+	    		->where('book_values.store_id', $store_id)
+	    		->leftJoin('books', 'book_values.sku', '=', 'books.sku')
+	    		->leftJoin('stores', 'book_values.store_id', '=', 'stores.store_id')
+	    		->paginate(10);
+
+	    	return view('backend.book.book_value-list', compact('query', 'stores'));
     	} else {
     		return redirect('home/');
     	}

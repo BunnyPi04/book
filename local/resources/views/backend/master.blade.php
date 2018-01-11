@@ -56,14 +56,14 @@
                     <li><a href="{{ asset('/admin/category') }}">Thể loại sách</a></li>
                     <li><a href="{{ asset('/admin/hightlight_book') }}">Sản phẩm nổi bật</a></li>
                     <li><a href="{{ asset('/admin/new_book') }}">Sản phẩm mới</a></li>
-                    <li><a href="{{ asset('/admin/book') }}">Chương trình sale</a></li>
+                    <li><a href="{{ asset('/admin/sale') }}">Chương trình sale</a></li>
+                    <li><a href="{{ asset('/admin/order') }}">Đơn đặt hàng online</a></li>
                     @if (((Auth::user()->position) == 'Admin'))
                         <li><a href="{{ asset('/admin/coupon') }}">Coupon</a></li>
                         <li><a href="{{ asset('/admin/user') }}">Quản lý người dùng</a></li>
-                        <li><a href="{{ asset('/admin/order') }}">Đơn đặt hàng online</a></li>
-                        <li><a href="{{ asset('/admin/invoice/') }}">Báo cáo hóa đơn</a></li>
+                        {{-- <li><a href="{{ asset('/admin/invoice/') }}">Báo cáo hóa đơn</a></li> --}}
                     @endif
-                        <li><a href="{{ asset('/admin/invoice/create') }}">Tạo hóa đơn</a></li>
+                        {{-- <li><a href="{{ asset('/admin/invoice/create') }}">Tạo hóa đơn</a></li> --}}
                         <li><a href="{{ asset('/admin/book_value/') }}">Tình trạng các kho</a></li>
                         <li><a href="{{ asset('/admin/store') }}">Danh sách cửa hàng</a></li>
                 </ul>

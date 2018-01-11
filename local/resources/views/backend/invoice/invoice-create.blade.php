@@ -17,18 +17,7 @@
         <form method="post" enctype="multipart/form-data" > 
             {{ csrf_field() }}
             <p><b>Tên nhân viên: </b>{{ Auth::user()->name }} - {{ (Auth::user()->fullname) }}</p>
-            <p><b>Cửa hàng: </b></p>
-            <div>
-                <input list="book_sku" name="book_sku">
-                        <datalist class="custom-select mb-2 mr-sm-2 mb-sm-0" id="book_sku">
-                            @if (isset($book))
-                                @foreach ($book as $item)
-                                    <option value="{{ $item['sku'] }}">{{ $item['sku'] }} - {{ $item['book_name'] }}</option>
-                                @endforeach
-                            @endif
-                        </datalist>
-                <button onclick="">Thêm</button>
-            </div>
+            <p><b>Cửa hàng: </b>{{ Auth::user()->store_id }} - {{ $query_store->store_name }}</p>
             <table id="datatbl">
                 <thead>
                     <tr>
@@ -42,12 +31,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if (isset($book))
-                        @foreach ($book as $item)
+                    @if (isset($query_book))
+                        @foreach ($query_book as $item)
                             <tr class="test">
                                 <td>{{ $item['sku'] }}</td>
                                 <td>{{ $item['book_name'] }}</td>
-                                <td>3</td>
+                                <td>{{ $item['number'] }}</td>
                                 <td>{{ number_format($item['price'], 0) }}</td>
                                 <td>
                                     @if (isset($item['special_price']) && (date('Y-m-d') >= $item['from_date']) && (date('Y-m-d') <= $item['to_date']))
@@ -61,7 +50,7 @@
                                         {{ number_format($item['price'], 0) }}
                                     @endif
                                 </td>
-                                <td><input type="button" name="add" value="Add" onclick="add_to_cart('{{ $item['sku'] }}', '{{ $item['book_name'] }}', '{{ $item['price'] }}', '{{ $item['special_price'] }}', '{{ $item['from_date'] }}');" /></td>
+                                <td><input type="button" name="add" value="Add" onclick="add_to_cart('{{ $item['id'] }}', '{{ $item['sku'] }}', '{{ $item['book_name'] }}', '{{ $item['price'] }}', '{{ $item['special_price'] }}', '{{ $item['from_date'] }}');" /></td>
                             </tr>
                         @endforeach
                     @endif
@@ -78,6 +67,7 @@
             </tr>
             <!-- View shopping cart[] -->
         </table>
+        <p><b>Tổng: </b><b id="total"></b></p>
     </div>
 </div>
 @endsection
@@ -85,7 +75,7 @@
     <script>
         $(document).ready(function() {
             $('#datatbl').DataTable( {
-                "scrollY":        "200px",
+                "scrollY":        "400px",
                 "scrollCollapse": true,
                 "paging":         false
             } );

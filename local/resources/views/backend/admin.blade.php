@@ -3,6 +3,16 @@
     <div class="row book-block">
         <h3 class="book-block-title"><a href="#">Quản trị </a></h3>
         <div>
+            @if(Session::has('passes'))
+                <div class="alert alert-success calibri">
+                     {{ session('passes') }} <br/> 
+                </div> 
+            @endif
+            @if(Session::has('error'))
+                <div class="alert alert-danger calibri">
+                     {{ session('error') }} <br/> 
+                </div>
+            @endif
             <div class="admin">
                 <i class="fa fa-user fa-5x"></i><a href="{{ asset('/admin/user') }}">{{ $countUser }} Người dùng </a>
             </div>

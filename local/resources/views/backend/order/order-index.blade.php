@@ -22,6 +22,9 @@
             <div class="admin">
                 <i class="fa fa-truck fa-5x"></i><a href="{{ asset('/admin/order/shipping') }}">{{ $countOrderDelivering }} Đơn hàng đang chuyển </a>
             </div>
+            <div class="admin">
+                <i class="fa fa-calendar fa-5x"></i><a href="{{ asset('/admin/order/statistic') }}">Thống kê </a>
+            </div>
         </div>
     </div>
     <style type="text/css">

@@ -5,6 +5,7 @@
             @foreach ($category as $item)
                 <li><a href="{{ asset('/category/'.$item['category_id'])}}">{{ $item['category_name'] }}</a></li>
             @endforeach
+
         @endif
     </ul>
 </div>

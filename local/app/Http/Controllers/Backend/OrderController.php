@@ -64,7 +64,7 @@ class OrderController extends Controller
     }
 
     public function show($order_id) {
-        if((Auth::user()->position) == 'Admin' || (Auth::user()->position) == 'Keeper') {
+        if((Auth::user()->position) == 'Admin' || (Auth::user()->position) == 'Cashier') {
             $order = new Order;
             $order_details = new Order_detail;
             $query_order = $order
@@ -86,7 +86,7 @@ class OrderController extends Controller
     }
 
     public function getEdit($order_id) {
-        if((Auth::user()->position) == 'Admin' || (Auth::user()->position) == 'Keeper') {
+        if((Auth::user()->position) == 'Admin' || (Auth::user()->position) == 'Cashier') {
             $order = new Order;
             $order_details = new Order_detail;
             $query_order = $order
@@ -116,15 +116,15 @@ class OrderController extends Controller
     			->get();
         $status = $request->input('status');
         if ($status == 'Shipping') {
-        	$book_value = new Book_value;
-        	foreach ($query_detail as $key) {
-        		$book_sku[] = $key['sku'];
-        	}
-        	foreach ($book_sku as $value) {
-        		$number = $book_value->where('sku', $value)->first();
-        		$book_value->where('sku', $value)->update([
-        			'number' => $number['number'] - 1,]);
-        	}
+        	// $book_value = new Book_value;
+        	// foreach ($query_detail as $key) {
+        	// 	$book_sku[] = $key['sku'];
+        	// }
+        	// foreach ($book_sku as $value) {
+        	// 	$number = $book_value->where('sku', $value)->first();
+        	// 	$book_value->where('sku', $value)->update([
+        	// 		'number' => $number['number'] - 1,]);
+        	// }
         	$query = $order->where('id', $order_id)->update([
 	        	'status' => $status
 	        ]);
@@ -148,7 +148,7 @@ class OrderController extends Controller
     }
 
     public function delete($order_id) {
-        if((Auth::user()->position) == 'Admin' || (Auth::user()->position) == 'Keeper') {
+        if((Auth::user()->position) == 'Admin' || (Auth::user()->position) == 'Cashier') {
             $order = new Order;
             $order_detail = new Order_detail;
             $query = $order->where('id', $order_id)->delete();
@@ -165,5 +165,31 @@ class OrderController extends Controller
 
             return back()->with($alert);
         }
+    }
+    public function statistic() {
+        return view('backend.order.statistic');
+    }
+
+    public function postStatistic(Request $request) {
+        $from_date = $request->from_date;
+        $to_date = $request->to_date;
+        $order = new Order;
+        $user = new User;
+        $query = $order
+            ->select('orders.id', 'orders.user_id', 'orders.city', 'orders.created_at', 'orders.total', 'orders.status', 'users.fullname')
+            ->whereBetween('orders.created_at', [$from_date, $to_date])
+            ->leftJoin('users', 'orders.user_id', '=', 'users.id')
+            ->orderBy('orders.created_at', 'desc')
+            ->get();
+        $getTotal = $order->select('total')
+            ->whereBetween('created_at', [$from_date, $to_date])
+            ->get();
+            // dd($getTotal);
+        $order_total = 0;
+        foreach ($query as $value) {
+            $order_total += floatval($value->total);
+        }
+
+        return view('backend.order.statistic', compact('query', 'order_total'));
     }
 }
